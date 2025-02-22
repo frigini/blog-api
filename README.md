@@ -58,7 +58,7 @@ Response
 Once you receive the token, include it in the Authorization header as a Bearer token in all API requests:
 
 ```http
-GET /api/posts
+GET /api/v1/posts
 Authorization: Bearer your-jwt-token
 ```
 
