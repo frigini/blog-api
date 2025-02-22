@@ -118,3 +118,12 @@ Now, you can send authenticated requests through Swagger.
 - `POST /api/v1/posts`
 - `GET /api/v1/posts/{id}`
 - `POST /api/v1/posts/{id}/comments`
+
+## Next Steps
+- Improve authentication with register and login endpoints
+- Create unit tests for the services and controllers
+- Update the Swagger documentation with more configurations
+- Create projects for the layers replacing the folders structure
+- Implement cache in the get endpoints based on the API's scalability
+- Improve the logging and tracing
+- Implement production monitoring to detect issues and performance bottlenecks 
