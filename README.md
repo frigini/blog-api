@@ -19,18 +19,18 @@ A RESTful API for managing a simple blogging platform built with .NET 8, followi
 
 ## Getting Started
 
-1. Clone the repository:
+1. **Clone the repository**:
 ```bash
 git clone <repository-url>
 cd blog-api
 ```
 
-2. Build the application:
+2. **Build the application**:
 ```bash
 make build
 ```
 
-3. Run the application:
+3. **Run the application**:
 ```bash
 make run
 ```
@@ -74,7 +74,7 @@ JSON
 ## Token Generation
 The API provides a simple way to generate a JWT token.
 
-## Generating a Token
+### Generating a Token
 To obtain a JWT token, send a GET request to:
 
 ```http
@@ -89,7 +89,7 @@ Response
 }
 ```
 
-## Using the Token
+### Using the Token
 Once you receive the token, include it in the Authorization header as a Bearer token in all API requests:
 
 ```http
