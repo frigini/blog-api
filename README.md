@@ -37,6 +37,40 @@ make run
 
 The API will be available at `http://localhost:8080` and Swagger documentation at `http://localhost:8080/swagger`.
 
+## Configuration
+
+The application requires configuration for database connection and JWT authentication. Sensitive information is not included in the version control.
+
+### Database Configuration
+
+1. **Create a `appsettings.Development.json` file** in the root directory (if it doesn't already exist). This file will override the default `appsettings.json` during development.
+2. **Add the database connection string** to the `appsettings.Development.json` file, replacing the placeholders with your actual values:
+
+```json
+{
+  "ConnectionStrings": {
+    "PgSqlConnection": "Server=localhost;Port=5432;Database=blogdb;User ID=your-user-ID;Password=your-password;Pooling=true;"
+  }
+}
+```
+
+**Note**: Ensure your PostgreSQL server is running and accessible at the specified address and port.
+
+## JWT Configuration
+Add the JWT configuration to the appsettings.Development.json file, replacing the placeholder with a strong, secure signing key:
+
+JSON
+
+```json
+{
+  "JWT": {
+    "SigningKey": "your-strong-signing-key"
+  }
+}
+```
+
+**Note**: Choose a long, random string for the signing key. Avoid using easily guessable values.
+
 ## Token Generation
 The API provides a simple way to generate a JWT token.
 
