@@ -41,7 +41,7 @@ The API will be available at `http://localhost:8080` and Swagger documentation a
 The API provides a simple way to generate a JWT token.
 
 ## Generating a Token
-To obtain a JWT, send a GET request to:
+To obtain a JWT token, send a GET request to:
 
 ```http
 GET /api/v1/auth/token
@@ -50,7 +50,8 @@ GET /api/v1/auth/token
 Response
 ```json
 {
-  "token": "your-jwt-token"
+  "message": "Token generated successfully",
+  "data": "your-jwt-token"
 }
 ```
 
