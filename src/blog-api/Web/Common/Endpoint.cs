@@ -9,7 +9,7 @@ public static class Endpoint
     {
         var endpoints = app.MapGroup("");
 
-        endpoints.MapGroup("/auth")
+        endpoints.MapGroup("/api/v1/auth")
             .WithTags("Authentication")
             .WithOpenApi()
             .MapEndpoint<AuthenticationEndpoint>();
