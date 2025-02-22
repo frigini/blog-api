@@ -1,16 +1,16 @@
 .PHONY: build run test clean
 
 build:
-	docker-compose build
+	docker compose build
 
 run:
-	docker-compose up
+	docker compose up
 
 stop:
-	docker-compose down
+	docker compose down
 
 clean:
-	docker-compose down -v
+	docker compose down -v
 	
 test:
 	dotnet test

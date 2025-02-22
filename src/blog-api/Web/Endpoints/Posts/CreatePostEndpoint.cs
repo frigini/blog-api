@@ -5,25 +5,23 @@ using BlogApi.Application.Validators;
 using BlogApi.Web.Common;
 using FluentValidation;
 
-namespace BlogApi.Web.Endpoints;
+namespace BlogApi.Web.Endpoints.Posts;
 
-public class AddCommentEndpoint : IEndpoint
+public class CreatePostEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
-        => app.MapPost("/{id:guid}/comments", HandleAsync)
-            .WithName("AddComment")
+        => app.MapPost("/", HandleAsync)
+            .WithName("CreatePost")
             .WithOpenApi()
-            .Produces<Response<CommentDto>>(StatusCodes.Status201Created)
-            .Produces(StatusCodes.Status404NotFound)
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces(StatusCodes.Status400BadRequest)
+            .Produces<Response<BlogPostDto>>(StatusCodes.Status201Created);
 
     private static async Task<IResult> HandleAsync(
-        Guid id,
-        CreateCommentDto commentDto,
-        CreateCommentDtoValidator validator,
+        CreateBlogPostDto postDto,
+        CreateBlogPostDtoValidator validator,
         IBlogService blogService)
     {
-        var validationResult = await validator.ValidateAsync(commentDto);
+        var validationResult = await validator.ValidateAsync(postDto);
         if (!validationResult.IsValid)
         {
             var errors = validationResult.Errors
@@ -36,12 +34,12 @@ public class AddCommentEndpoint : IEndpoint
                 "Validation failed"));
         }
 
-        var comment = await blogService.AddCommentAsync(id, commentDto);
+        var post = await blogService.CreatePostAsync(postDto);
         return TypedResults.Created(
-            $"/api/posts/{id}",
-            new Response<CommentDto>(
-                comment,
-                StatusCodes.Status201Created,
-                "Comment added successfully"));
+            $"/api/posts/{post.Id}",
+            new Response<BlogPostDto>(
+                post,
+                201,
+                "Post created successfully"));
     }
 }

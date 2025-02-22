@@ -4,12 +4,12 @@ using BlogApi.Application.Responses;
 using BlogApi.Web.Common;
 using FluentValidation;
 
-namespace BlogApi.Web.Endpoints;
+namespace BlogApi.Web.Endpoints.Posts;
 
 public class GetPostsEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
-        => app.MapPost("/", HandleAsync)
+        => app.MapGet("/", HandleAsync)
             .WithName("GetPosts")
             .WithOpenApi()
             .Produces<PagedResponse<IEnumerable<BlogPostDto>>>(StatusCodes.Status200OK);

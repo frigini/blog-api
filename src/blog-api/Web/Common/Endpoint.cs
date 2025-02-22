@@ -1,4 +1,5 @@
-﻿using BlogApi.Web.Endpoints;
+﻿using BlogApi.Web.Endpoints.Authentication;
+using BlogApi.Web.Endpoints.Posts;
 
 namespace BlogApi.Web.Common;
 
@@ -8,8 +9,15 @@ public static class Endpoint
     {
         var endpoints = app.MapGroup("");
 
-        endpoints.MapGroup("v1/api/posts")
+        endpoints.MapGroup("/auth")
+            .WithTags("Authentication")
+            .WithOpenApi()
+            .MapEndpoint<AuthenticationEndpoint>();
+
+        endpoints.MapGroup("/api/v1/posts")
             .WithTags("Posts")
+            .WithOpenApi()
+            .RequireAuthorization()
             .MapEndpoint<AddCommentEndpoint>()
             .MapEndpoint<CreatePostEndpoint>()
             .MapEndpoint<GetPostEndpoint>()
